@@ -1,10 +1,15 @@
 import React from 'react';
 
+import Header from '../../components/Header';
+
 function Main() {
   return (
-    <div>
-      <h1>Hello</h1>
-    </div>
+    <>
+      <Header />
+      <div>
+        <h1>Hello</h1>
+      </div>
+    </>
   );
 }
 
