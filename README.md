@@ -1,68 +1,65 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Projeto GitHub
 
-## Available Scripts
+## Descrição
 
-In the project directory, you can run:
+Neste projeto iremos construir uma aplicação semelhante ao GitHub. Iremos ter uma linha do tempo do GitHub que cria um histórico visual de uma atividade dos usuários do GitHub. Neste projeto iremos utilizar um username e produzir uma timeline contendo cada repositório e situando os nomes dos repositórios, a data que eles foram criados e suas descrições. Obs: Somente repositórios públicos devem ser mostrados.
 
-### `npm start`
+## Objetivos
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- O usuário pode digitar um nome de usuário do GitHub.
+- O usuário pode clicar em um botão para criar e mostrar o repositório do usuário com sua timeline.
+- O usuário pode ver um mensagem de erro se o username do GitHub não for válido.
+- O usuário pode ver um resumo do número de repos registrados pelo ano em que foram criados
+- O usuário pode buscar repositórios/projetos por tipo de linguagem de programação
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+## Recursos
 
-### `npm test`
+O GitHub oferece duas API’s e você pode utilizar para ter acesso aos dados de repositórios, você também pode utilizar um package do NPM para acessar a API do GitHub.
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Documentação:
 
-### `npm run build`
+GitHub REST API GitHub GraphQL API V4
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Critérios de Aceitação
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+- Aplicativo inicia com npm install e npm start (yarn também é válido).
+- A plicativo possui um README que detalha o App.
+- Gerenciamento de Estado
+- O App é gerenciado pelo Redux
+- A maioria dos estados são gerenciados pela Redux Store.
+- As atualizações são disparadas pelo dispatch.
+- Os reducers estão definidos de forma correta
+- Desenvolvimento extra da Aplicação
+- Os componentes estão corretamente definidos.
+- Uso correto do Lifecycle na aplicação.
+- As funções estão escritas de forma correta e de fácil entendimento.
+- Não há código repetido.
+- Uso de testes na aplicação com coverage de 80% no mínimo.
+- Utilização de bibliotecas, como: GraphQL, Relay, Apollo e Saga.
+- Utilização de Styled Components ou Emotion.
+- Sobre a apresentação do projeto
+- Para que todos do grupo tenham a chance de apresentar seu trabalho, a apresentação deve ser feita de forma individual. Vocês podem ensaiar juntos, fazer um roteiro parecido, mas é importante que cada participante faça sua própria gravação.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Objetividade é muito importante - falem naturalmente e sem ler, por favor! :) Recomendamos que você faça um video-call e gravem este call. Assim, poderão ficar à vontade para compartilhar a tela e mostrar o código ou qualquer outra coisa importante. O vídeo deve ter no máximo 10 minutos.
 
-### `npm run eject`
+### Segue uma sugestão de roteiro:
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### Apresentação pessoal
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+“Oi, pessoal…, eu me chamo **\_** e vou apresentar para vocês o projeto final que fiz com a squad **\_\_**(número e nome) da Aceleração **\_\_\_** da Codenation.”
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+### Apresentação do projeto
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+Os membros da squad;
 
-## Learn More
+- Descrição do projeto e desenvolvimento do processo que a squad utilizou para resolver o problema;
+- Divisão de tarefas entre os membros da squad e quais foram suas principais responsabilidades;
+- Tecnologias utilizadas e eficácia;
+- Aprendizados destacados durante o processo e ao final do projeto;
+- Duas principais dificuldades, e como foram contornadas;
+- Dois principais acertos ou escolhas acertadas que fizeram diferença no projeto e por quê.
+- Para ficar mais fácil, dê uma olhada nesta apresentação de projeto de um programa que realizamos em Joinville. Neste caso, os participantes desenvolveram em squads uma aplicação (backend e frontend) que buscava anunciar animais perdidos ou animais para adoção. - - - Assim, pessoas interessadas poderiam colaborar para adotar e/ou encontrar um pet. Fiz alguns comentários na apresentação para ajudar vocês! :)
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Como enviar os vídeos?
 
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+Após terem determinado o roteiro e feito suas gravações individuais, encaminhe por e-mail o link do vídeo no YouTube (lembre de colocá-lo como não listado, por favor). No título, use a seguinte descrição: “Apresentação projeto final [Seu Nome][nome de sua squad]” . O link do vídeo deve ser enviado para mario.machado@codenation.dev e ingrid.adam@codenation.dev, juntamente com o link do Code Review do projeto na plataforma Codenation, com o assunto “AceleraDev React - Squad [nº da sua squad]” até o dia 07/08/2019.

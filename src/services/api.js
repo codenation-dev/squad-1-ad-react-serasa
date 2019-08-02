@@ -1,7 +1,12 @@
-import axios from 'axios';
+// instalando o apollo client e configurando api
 
-const api = axios.create({
-  baseURL: 'https://api.github.com',
-});
+// installing the preset package
+// yarn add apollo-boost graphql-tag graphql
 
-export default api;
+// import ApolloClient from 'apollo-boost';
+
+// const api = new ApolloClient({
+//   uri: 'https://api.github.com',
+// });
+
+// export default api;

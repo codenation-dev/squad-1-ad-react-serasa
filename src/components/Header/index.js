@@ -1,31 +1,89 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { FaGitAlt, FaCheckCircle, FaPlusCircle } from 'react-icons/fa';
 
 import { Creators as RepositoriesActions } from '../../store/ducks/repositories';
 
-import { Container, Navbar } from './styles';
+import {
+  Container, Navbar, Form, Logo, Token,
+} from './styles';
 
-function Header({ searchRepositoryByUser }) {
-  const handleSearchClick = (e, searchAction) => {
+class Header extends Component {
+  state = {
+    token: '',
+    newToken: '',
+  };
+
+  componentDidMount() {
+    const tokenResult = localStorage.getItem('@gitToken');
+    if (tokenResult) {
+      this.setState({
+        token: JSON.parse(tokenResult),
+      });
+    }
+  }
+
+  componentDidUpdate() {}
+
+  handleSearchClick = (e, searchAction) => {
     e.preventDefault();
     searchAction();
   };
 
-  return (
-    <Container>
-      <Navbar>
-        <h1>Logo</h1>
-        <form>
-          <input type="text" placeholder="Adicionar" />
-          <button type="submit" onClick={e => handleSearchClick(e, searchRepositoryByUser)}>
-            Pesquisar
-          </button>
-        </form>
-        <h1>menu</h1>
-      </Navbar>
-    </Container>
-  );
+  handleChange = (e) => {
+    this.setState({ newToken: e.target.value });
+  };
+
+  handleAddToken = () => {
+    const { newToken } = this.state;
+    this.setState({
+      token: newToken,
+      newToken: '',
+    });
+    localStorage.setItem('@gitToken', JSON.stringify(newToken));
+  };
+
+  handleRemoveToken = () => {
+    localStorage.clear();
+    this.setState({ token: '' });
+  };
+
+  render() {
+    const { searchRepositoryByUser } = this.props;
+    const { token, newToken } = this.state;
+    return (
+      <Container>
+        <Navbar>
+          <Logo>
+            <FaGitAlt size={60} color="#fff" />
+            <h1>Github</h1>
+          </Logo>
+          <Form>
+            <input type="text" placeholder="Adicionar" />
+            <button type="submit" onClick={e => this.handleSearchClick(e, searchRepositoryByUser)}>
+              Pesquisar
+            </button>
+          </Form>
+          {token ? (
+            <Token>
+              <strong>Token</strong>
+              <FaCheckCircle color="#fff" onClick={this.handleRemoveToken} />
+            </Token>
+          ) : (
+            <Token>
+              <input
+                value={newToken}
+                onChange={e => this.handleChange(e)}
+                placeholder="Adicionar Token"
+              />
+              <FaPlusCircle size={18} color="#fff" onClick={this.handleAddToken} />
+            </Token>
+          )}
+        </Navbar>
+      </Container>
+    );
+  }
 }
 
 const mapDispatchToProps = dispatch => bindActionCreators(RepositoriesActions, dispatch);
