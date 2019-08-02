@@ -16,27 +16,27 @@ export const { Types, Creators } = createActions({
 const INITIAL_STATE = [];
 
 const searchRepositoryByUser = (state = INITIAL_STATE, action) => {
-    console.log('searchRepositoryByUser');
-    console.log(action);
-    return state;
+  console.log('searchRepositoryByUser');
+  console.log(action);
+  return state;
 };
 
 const searchRepositoryByLanguage = (state = INITIAL_STATE, action) => {
-    console.log('searchRepositoryByLanguage');
-    console.log(action);
-    return state;
+  console.log('searchRepositoryByLanguage');
+  console.log(action);
+  return state;
 };
 
 const searchRepositoryByYear = (state = INITIAL_STATE, action) => {
-    console.log('searchRepositoryByYear');
-    console.log(action);
-    return state;
+  console.log('searchRepositoryByYear');
+  console.log(action);
+  return state;
 };
 
 const createRepository = (state = INITIAL_STATE, action) => {
-    console.log('createRepository');
-    console.log(action);
-    return state;
+  console.log('createRepository');
+  console.log(action);
+  return state;
 };
 
 /**

@@ -18,7 +18,9 @@ function Header({ searchRepositoryByUser }) {
         <h1>Logo</h1>
         <form>
           <input type="text" placeholder="Adicionar" />
-          <button type="submit" onClick={e => handleSearchClick(e, searchRepositoryByUser)}>Pesquisar</button>
+          <button type="submit" onClick={e => handleSearchClick(e, searchRepositoryByUser)}>
+            Pesquisar
+          </button>
         </form>
         <h1>menu</h1>
       </Navbar>
@@ -28,4 +30,7 @@ function Header({ searchRepositoryByUser }) {
 
 const mapDispatchToProps = dispatch => bindActionCreators(RepositoriesActions, dispatch);
 
-export default connect(null, mapDispatchToProps)(Header);
+export default connect(
+  null,
+  mapDispatchToProps,
+)(Header);

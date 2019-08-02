@@ -1,14 +1,17 @@
 import React from 'react';
 
 import Header from '../../components/Header';
+import Card from '../../components/Cards';
+
+import { Container } from './styles';
 
 function Main() {
   return (
     <>
       <Header />
-      <div>
-        <h1>Hello</h1>
-      </div>
+      <Container>
+        <Card />
+      </Container>
     </>
   );
 }

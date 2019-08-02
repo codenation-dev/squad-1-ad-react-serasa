@@ -8,20 +8,10 @@ export default createGlobalStyle`
     box-sizing: border-box;
   }
 
-  html, body, #root {
-    min-height: 100%;
-  }
-
   body {
+    background: #eee;
+    text-rendering: optimizeLegibility !important;
     -webkit-font-smoothing: antialiased !important;
-  }
-
-  body, input, button {
-    font-size: 14px;
-    font-family: Arial, Helvetica, sans-serif;
-  }
-
-  button {
-    cursor: pointer;
+    font-family: sans-serif;
   }
 `;
