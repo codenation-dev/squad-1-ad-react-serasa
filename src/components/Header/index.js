@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { FaGitAlt, FaCheckCircle, FaPlusCircle } from 'react-icons/fa';
@@ -11,6 +12,10 @@ import {
 } from './styles';
 
 class Header extends Component {
+  static propTypes = {
+    getUserRequest: PropTypes.func.isRequired,
+  };
+
   state = {
     token: '',
     newToken: '',

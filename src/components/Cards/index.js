@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { FaTrashAlt, FaArrowRight } from 'react-icons/fa';
@@ -36,6 +37,19 @@ const Cards = ({ gitUser, getUserRemove }) => (
     </ContentIcon>
   </Container>
 );
+
+Cards.propTypes = {
+  getUserRemove: PropTypes.func.isRequired,
+  gitUser: PropTypes.shape({
+    id: PropTypes.number,
+    name: PropTypes.string,
+    login: PropTypes.string,
+    avatar_url: PropTypes.string,
+    public_repos: PropTypes.number,
+    following: PropTypes.number,
+    followers: PropTypes.number,
+  }).isRequired,
+};
 
 const mapDispatchToProps = dispatch => bindActionCreators(UserActions, dispatch);
 

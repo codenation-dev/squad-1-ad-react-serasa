@@ -13,6 +13,7 @@ export default Creators;
 
 export const INITIAL_STATE = Immutable({
   data: [],
+  repos: [],
   error: false,
   isLoading: false,
 });
