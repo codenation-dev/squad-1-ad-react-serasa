@@ -73,7 +73,7 @@ class Header extends Component {
               value={newInput}
               onChange={e => this.setState({ newInput: e.target.value })}
             />
-            <button type="submit">Pesquisar</button>
+            <button type="submit">Adicionar</button>
           </Form>
           {token ? (
             <Token>

@@ -5,12 +5,17 @@ import { Link } from 'react-router-dom';
 
 import apiAxios from '../../services/apiAxios';
 
-import {
-  Container, Info, Owner, RepoList,
-} from './styles';
+import RepoList from '../../components/RepoList';
+
+import { Container, Owner } from './styles';
 
 class Details extends Component {
   static propTypes = {
+    match: PropTypes.shape({
+      params: PropTypes.shape({
+        login: PropTypes.string,
+      }),
+    }).isRequired,
     users: PropTypes.shape({
       data: PropTypes.arrayOf(PropTypes.shape()),
     }).isRequired,
@@ -41,40 +46,12 @@ class Details extends Component {
               <h1>{user.name}</h1>
               <p>{user.bio}</p>
             </Owner>
-            <RepoList>
-              {repos.map(repo => (
-                <li key={String(repo.id)}>
-                  <div>
-                    <h2>
-                      <a href={repo.html_url}>{repo.name}</a>
-                    </h2>
-                    <Info>
-                      <strong>{repo.forks_count}</strong>
-                      <p>Forks </p>
-                    </Info>
-
-                    <Info>
-                      <strong>{repo.stargazers_count}</strong>
-                      <p>Stars </p>
-                    </Info>
-
-                    <Info>
-                      <strong>{repo.open_issues_count}</strong>
-                      <p>Issues </p>
-                    </Info>
-
-                    <Info>
-                      <strong>{repo.created_at}</strong>
-                      <p>Created </p>
-                    </Info>
-                  </div>
-                </li>
-              ))}
-            </RepoList>
+            <RepoList repos={repos} />
           </Container>
         ) : (
           <Container>
             <h1>No show usuario</h1>
+            <Link to="/">Voltar aos repositorios</Link>
           </Container>
         )}
       </div>
