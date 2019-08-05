@@ -24,7 +24,7 @@ export const Container = styled.div`
     }
 
     strong {
-      font-size: 24px;
+      font-size: 18px;
       margin-top: 10px;
     }
 
