@@ -3,7 +3,8 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { FaGitAlt, FaCheckCircle, FaPlusCircle } from 'react-icons/fa';
 
-import { Creators as RepositoriesActions } from '../../store/ducks/repositories';
+// import { Creators as RepositoriesActions } from '../../store/ducks/repositories';
+import UserActions from '../../store/ducks/users';
 
 import {
   Container, Navbar, Form, Logo, Token,
@@ -13,9 +14,10 @@ class Header extends Component {
   state = {
     token: '',
     newToken: '',
+    newInput: '',
   };
 
-  componentDidMount() {
+  async componentDidMount() {
     const tokenResult = localStorage.getItem('@gitToken');
     if (tokenResult) {
       this.setState({
@@ -24,11 +26,12 @@ class Header extends Component {
     }
   }
 
-  componentDidUpdate() {}
-
-  handleSearchClick = (e, searchAction) => {
+  handleAddUser = async (e) => {
     e.preventDefault();
-    searchAction();
+    const { getUserRequest } = this.props;
+    const { newInput } = this.state;
+    await getUserRequest(`/users/${newInput}`);
+    this.setState({ newInput: '' });
   };
 
   handleChange = (e) => {
@@ -50,8 +53,7 @@ class Header extends Component {
   };
 
   render() {
-    const { searchRepositoryByUser } = this.props;
-    const { token, newToken } = this.state;
+    const { token, newToken, newInput } = this.state;
     return (
       <Container>
         <Navbar>
@@ -59,11 +61,14 @@ class Header extends Component {
             <FaGitAlt size={60} color="#fff" />
             <h1>Github</h1>
           </Logo>
-          <Form>
-            <input type="text" placeholder="Adicionar" />
-            <button type="submit" onClick={e => this.handleSearchClick(e, searchRepositoryByUser)}>
-              Pesquisar
-            </button>
+          <Form onSubmit={e => this.handleAddUser(e)}>
+            <input
+              type="text"
+              placeholder="Adicionar"
+              value={newInput}
+              onChange={e => this.setState({ newInput: e.target.value })}
+            />
+            <button type="submit">Pesquisar</button>
           </Form>
           {token ? (
             <Token>
@@ -86,7 +91,7 @@ class Header extends Component {
   }
 }
 
-const mapDispatchToProps = dispatch => bindActionCreators(RepositoriesActions, dispatch);
+const mapDispatchToProps = dispatch => bindActionCreators(UserActions, dispatch);
 
 export default connect(
   null,
