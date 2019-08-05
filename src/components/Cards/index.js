@@ -1,273 +1,48 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { FaTrashAlt, FaArrowRight } from 'react-icons/fa';
 
-import {
-  Container, Repository, Icon, ContentIcon,
-} from './styles';
+import UserActions from '../../store/ducks/users';
 
-const Cards = () => (
+import { Container, Icon, ContentIcon } from './styles';
+
+const Cards = ({ gitUser, getUserRemove }) => (
   <Container>
-    <Repository>
-      <header>
-        <img src="" alt="" />
-        <strong>Fillipi</strong>
-        <small>LinkinN</small>
-      </header>
-      <ul>
-        <li>
-          1200 <small>star</small>
-        </li>
-        <li>
-          1200 <small>forks</small>
-        </li>
-        <li>
-          1200 <small>issues</small>
-        </li>
-        <li>
-          1200 <small>last commint</small>
-        </li>
-      </ul>
-      <ContentIcon>
-        <Icon type="submit" onClick={() => {}}>
-          <i className="fa fa-remove" aria-hidden="true" />
-        </Icon>
-        <Icon type="submit" onClick={() => {}}>
-          <i className="fa fa-refresh" aria-hidden="true" />
-        </Icon>
-      </ContentIcon>
-    </Repository>
-    <Repository>
-      <header>
-        <img src="" alt="" />
-        <strong>Fillipi</strong>
-        <small>LinkinN</small>
-      </header>
-      <ul>
-        <li>
-          1200 <small>star</small>
-        </li>
-        <li>
-          1200 <small>forks</small>
-        </li>
-        <li>
-          1200 <small>issues</small>
-        </li>
-        <li>
-          1200 <small>last commint</small>
-        </li>
-      </ul>
-      <ContentIcon>
-        <Icon type="submit" onClick={() => {}}>
-          <i className="fa fa-remove" aria-hidden="true" />
-        </Icon>
-        <Icon type="submit" onClick={() => {}}>
-          <i className="fa fa-refresh" aria-hidden="true" />
-        </Icon>
-      </ContentIcon>
-    </Repository>
-    <Repository>
-      <header>
-        <img src="" alt="" />
-        <strong>Fillipi</strong>
-        <small>LinkinN</small>
-      </header>
-      <ul>
-        <li>
-          1200 <small>star</small>
-        </li>
-        <li>
-          1200 <small>forks</small>
-        </li>
-        <li>
-          1200 <small>issues</small>
-        </li>
-        <li>
-          1200 <small>last commint</small>
-        </li>
-      </ul>
-      <ContentIcon>
-        <Icon type="submit" onClick={() => {}}>
-          <i className="fa fa-remove" aria-hidden="true" />
-        </Icon>
-        <Icon type="submit" onClick={() => {}}>
-          <i className="fa fa-refresh" aria-hidden="true" />
-        </Icon>
-      </ContentIcon>
-    </Repository>
-    <Repository>
-      <header>
-        <img src="" alt="" />
-        <strong>Fillipi</strong>
-        <small>LinkinN</small>
-      </header>
-      <ul>
-        <li>
-          1200 <small>star</small>
-        </li>
-        <li>
-          1200 <small>forks</small>
-        </li>
-        <li>
-          1200 <small>issues</small>
-        </li>
-        <li>
-          1200 <small>last commint</small>
-        </li>
-      </ul>
-      <ContentIcon>
-        <Icon type="submit" onClick={() => {}}>
-          <i className="fa fa-remove" aria-hidden="true" />
-        </Icon>
-        <Icon type="submit" onClick={() => {}}>
-          <i className="fa fa-refresh" aria-hidden="true" />
-        </Icon>
-      </ContentIcon>
-    </Repository>
-    <Repository>
-      <header>
-        <img src="" alt="" />
-        <strong>Fillipi</strong>
-        <small>LinkinN</small>
-      </header>
-      <ul>
-        <li>
-          1200 <small>star</small>
-        </li>
-        <li>
-          1200 <small>forks</small>
-        </li>
-        <li>
-          1200 <small>issues</small>
-        </li>
-        <li>
-          1200 <small>last commint</small>
-        </li>
-      </ul>
-      <ContentIcon>
-        <Icon type="submit" onClick={() => {}}>
-          <i className="fa fa-remove" aria-hidden="true" />
-        </Icon>
-        <Icon type="submit" onClick={() => {}}>
-          <i className="fa fa-refresh" aria-hidden="true" />
-        </Icon>
-      </ContentIcon>
-    </Repository>
-    <Repository>
-      <header>
-        <img src="" alt="" />
-        <strong>Fillipi</strong>
-        <small>LinkinN</small>
-      </header>
-      <ul>
-        <li>
-          1200 <small>star</small>
-        </li>
-        <li>
-          1200 <small>forks</small>
-        </li>
-        <li>
-          1200 <small>issues</small>
-        </li>
-        <li>
-          1200 <small>last commint</small>
-        </li>
-      </ul>
-      <ContentIcon>
-        <Icon type="submit" onClick={() => {}}>
-          <i className="fa fa-remove" aria-hidden="true" />
-        </Icon>
-        <Icon type="submit" onClick={() => {}}>
-          <i className="fa fa-refresh" aria-hidden="true" />
-        </Icon>
-      </ContentIcon>
-    </Repository>
-    <Repository>
-      <header>
-        <img src="" alt="" />
-        <strong>Fillipi</strong>
-        <small>LinkinN</small>
-      </header>
-      <ul>
-        <li>
-          1200 <small>star</small>
-        </li>
-        <li>
-          1200 <small>forks</small>
-        </li>
-        <li>
-          1200 <small>issues</small>
-        </li>
-        <li>
-          1200 <small>last commint</small>
-        </li>
-      </ul>
-      <ContentIcon>
-        <Icon type="submit" onClick={() => {}}>
-          <i className="fa fa-remove" aria-hidden="true" />
-        </Icon>
-        <Icon type="submit" onClick={() => {}}>
-          <i className="fa fa-refresh" aria-hidden="true" />
-        </Icon>
-      </ContentIcon>
-    </Repository>
-    <Repository>
-      <header>
-        <img src="" alt="" />
-        <strong>Fillipi</strong>
-        <small>LinkinN</small>
-      </header>
-      <ul>
-        <li>
-          1200 <small>star</small>
-        </li>
-        <li>
-          1200 <small>forks</small>
-        </li>
-        <li>
-          1200 <small>issues</small>
-        </li>
-        <li>
-          1200 <small>last commint</small>
-        </li>
-      </ul>
-      <ContentIcon>
-        <Icon type="submit" onClick={() => {}}>
-          <i className="fa fa-remove" aria-hidden="true" />
-        </Icon>
-        <Icon type="submit" onClick={() => {}}>
-          <i className="fa fa-refresh" aria-hidden="true" />
-        </Icon>
-      </ContentIcon>
-    </Repository>
-    <Repository>
-      <header>
-        <img src="" alt="" />
-        <strong>Fillipi</strong>
-        <small>LinkinN</small>
-      </header>
-      <ul>
-        <li>
-          1200 <small>star</small>
-        </li>
-        <li>
-          1200 <small>forks</small>
-        </li>
-        <li>
-          1200 <small>issues</small>
-        </li>
-        <li>
-          1200 <small>last commint</small>
-        </li>
-      </ul>
-      <ContentIcon>
-        <Icon type="submit" onClick={() => {}}>
-          <i className="fa fa-remove" aria-hidden="true" />
-        </Icon>
-        <Icon type="submit" onClick={() => {}}>
-          <i className="fa fa-refresh" aria-hidden="true" />
-        </Icon>
-      </ContentIcon>
-    </Repository>
+    <header>
+      <img src={gitUser.avatar_url} alt="" />
+      <strong>{gitUser.name}</strong>
+      <small>{gitUser.login}</small>
+    </header>
+    <ul>
+      <li>
+        {gitUser.followers} <small>Followers</small>
+      </li>
+      <li>
+        {gitUser.following} <small>Following</small>
+      </li>
+      <li>
+        {gitUser.public_repos} <small>Public Repos</small>
+      </li>
+      <li>
+        <strong>Bio: </strong>
+        {gitUser.bio}
+      </li>
+    </ul>
+    <ContentIcon>
+      <Icon type="button" onClick={() => getUserRemove(gitUser.id)}>
+        <FaTrashAlt />
+      </Icon>
+      <Icon type="button" onClick={() => {}}>
+        <FaArrowRight />
+      </Icon>
+    </ContentIcon>
   </Container>
 );
 
-export default Cards;
+const mapDispatchToProps = dispatch => bindActionCreators(UserActions, dispatch);
+
+export default connect(
+  null,
+  mapDispatchToProps,
+)(Cards);

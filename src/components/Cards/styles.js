@@ -1,16 +1,6 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  margin-top: 20px;
-  @media (max-width: 768px) {
-    flex-direction: column;
-  }
-`;
-
-export const Repository = styled.div`
   width: 250px;
   background: #fff;
   border-radius: 3px;
@@ -30,6 +20,7 @@ export const Repository = styled.div`
 
     img {
       width: 64px;
+      border-radius: 50%;
     }
 
     strong {
@@ -79,15 +70,5 @@ export const Icon = styled.button`
   background: #fff;
   border: 0;
   margin: 0 10px;
-  i {
-    display: flex;
-    height: 30px;
-    width: 30px;
-    justify-content: center;
-    align-items: center;
-    background: #eee;
-    &:hover {
-      background: #888;
-    }
-  }
+  cursor: pointer;
 `;
