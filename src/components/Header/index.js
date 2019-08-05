@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -11,90 +11,80 @@ import {
   Container, Navbar, Form, Logo, Token,
 } from './styles';
 
-class Header extends Component {
-  static propTypes = {
-    getUserRequest: PropTypes.func.isRequired,
-  };
+function Header({ getUserRequest }) {
+  const [token, setToken] = useState('');
+  const [newToken, setNewToken] = useState('');
+  const [newInput, setNewInput] = useState('');
 
-  state = {
-    token: '',
-    newToken: '',
-    newInput: '',
-  };
-
-  async componentDidMount() {
+  useEffect(() => {
     const tokenResult = localStorage.getItem('@gitToken');
     if (tokenResult) {
-      this.setState({
-        token: JSON.parse(tokenResult),
-      });
+      setToken(JSON.parse(tokenResult));
     }
-  }
+  }, []);
 
-  handleAddUser = async (e) => {
+  async function handleAddUser(e) {
     e.preventDefault();
-    const { getUserRequest } = this.props;
-    const { newInput } = this.state;
     await getUserRequest(`/users/${newInput}`);
-    this.setState({ newInput: '' });
-  };
-
-  handleChange = (e) => {
-    this.setState({ newToken: e.target.value });
-  };
-
-  handleAddToken = () => {
-    const { newToken } = this.state;
-    this.setState({
-      token: newToken,
-      newToken: '',
-    });
-    localStorage.setItem('@gitToken', JSON.stringify(newToken));
-  };
-
-  handleRemoveToken = () => {
-    localStorage.clear();
-    this.setState({ token: '' });
-  };
-
-  render() {
-    const { token, newToken, newInput } = this.state;
-    return (
-      <Container>
-        <Navbar>
-          <Logo>
-            <FaGitAlt size={60} color="#fff" />
-            <h1>Github</h1>
-          </Logo>
-          <Form onSubmit={e => this.handleAddUser(e)}>
-            <input
-              type="text"
-              placeholder="Adicionar"
-              value={newInput}
-              onChange={e => this.setState({ newInput: e.target.value })}
-            />
-            <button type="submit">Adicionar</button>
-          </Form>
-          {token ? (
-            <Token>
-              <strong>Token</strong>
-              <FaCheckCircle color="#fff" onClick={this.handleRemoveToken} />
-            </Token>
-          ) : (
-            <Token>
-              <input
-                value={newToken}
-                onChange={e => this.handleChange(e)}
-                placeholder="Adicionar Token"
-              />
-              <FaPlusCircle size={18} color="#fff" onClick={this.handleAddToken} />
-            </Token>
-          )}
-        </Navbar>
-      </Container>
-    );
+    setNewInput('');
   }
+
+  function handleChangeToken(e) {
+    setNewToken(e.target.value);
+  }
+
+  function handleChangeInput(e) {
+    setNewInput(e.target.value);
+  }
+
+  function handleAddToken() {
+    setToken(newToken);
+    localStorage.setItem('@gitToken', JSON.stringify(newToken));
+  }
+
+  function handleRemoveToken() {
+    localStorage.clear();
+    setToken('');
+  }
+  return (
+    <Container>
+      <Navbar>
+        <Logo>
+          <FaGitAlt size={60} color="#fff" />
+          <h1>Github</h1>
+        </Logo>
+        <Form onSubmit={e => handleAddUser(e)}>
+          <input
+            type="text"
+            placeholder="Adicionar"
+            value={newInput}
+            onChange={e => handleChangeInput(e)}
+          />
+          <button type="submit">Adicionar</button>
+        </Form>
+        {token ? (
+          <Token>
+            <strong>Token</strong>
+            <FaCheckCircle color="#fff" onClick={handleRemoveToken} />
+          </Token>
+        ) : (
+          <Token>
+            <input
+              value={newToken}
+              onChange={e => handleChangeToken(e)}
+              placeholder="Adicionar Token"
+            />
+            <FaPlusCircle size={18} color="#fff" onClick={handleAddToken} />
+          </Token>
+        )}
+      </Navbar>
+    </Container>
+  );
 }
+
+Header.propTypes = {
+  getUserRequest: PropTypes.func.isRequired,
+};
 
 const mapDispatchToProps = dispatch => bindActionCreators(UserActions, dispatch);
 
