@@ -20,9 +20,14 @@ export const INITIAL_STATE = Immutable({
 
 export const userRequest = state => state.merge({ isLoading: true });
 
-export const userSuccess = (state, { data }) => state.merge({ data: [...state.data, data], isLoading: false });
+export const userSuccess = (state, { data }) => (
+  state.merge({ data: [...state.data, data], isLoading: false })
+);
 
-export const userRemove = (state, { id }) => state.merge({ data: [...state.data.filter(user => user.id !== id)] });
+export const userRemove = (state, { id }) => {
+  localStorage.removeItem('@UserGit');
+  return state.merge({ data: [...state.data.filter(user => user.id !== id)] });
+};
 
 export const userFailure = (state, { error }) => state.merge({ isLoading: false, error });
 
