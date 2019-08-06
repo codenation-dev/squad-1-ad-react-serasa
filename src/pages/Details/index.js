@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import apiAxios from '../../services/apiAxios';
@@ -9,9 +9,10 @@ import RepoList from '../../components/RepoList';
 
 import { Container, Owner } from './styles';
 
-function Details({ match, users }) {
-  const [user, setUser] = useState({});
+export default function Details({ match }) {
+  const users = useSelector(state => state.users);
 
+  const [user, setUser] = useState({});
   const [repos, setRepos] = useState([]);
 
   useEffect(() => {
@@ -53,13 +54,4 @@ Details.propTypes = {
       login: PropTypes.string,
     }),
   }).isRequired,
-  users: PropTypes.shape({
-    data: PropTypes.arrayOf(PropTypes.shape()),
-  }).isRequired,
 };
-
-const mapStateToProps = state => ({
-  users: state.users,
-});
-
-export default connect(mapStateToProps)(Details);

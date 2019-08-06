@@ -1,12 +1,10 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
+import { useDispatch } from 'react-redux';
 import { FaGitAlt, FaSearch } from 'react-icons/fa';
 import { toast } from 'react-toastify';
 import { withRouter } from 'react-router-dom';
 
-// import { Creators as RepositoriesActions } from '../../store/ducks/repositories';
 import UserActions from '../../store/ducks/users';
 import LanguageActions from '../../store/ducks/language';
 
@@ -14,13 +12,15 @@ import {
   Container, Navbar, Form, Logo,
 } from './styles';
 
-function Header({ getUserRequest, getLanguageRequest, history }) {
+function Header({ history }) {
+  const dispatch = useDispatch();
+
   const [newInput, setNewInput] = useState('');
   const [search, setSearch] = useState('');
 
   async function handleAddUser(e) {
     e.preventDefault();
-    await getUserRequest(`/users/${newInput}`);
+    await dispatch(UserActions.getUserRequest(`/users/${newInput}`));
     setNewInput('');
   }
 
@@ -32,12 +32,16 @@ function Header({ getUserRequest, getLanguageRequest, history }) {
     e.preventDefault();
     if (search.split('/').length === 2) {
       const result = search.split('/');
-      await getLanguageRequest(`/search/repositories?q=${result[0]}+language:${result[1]}`, result);
-    } else {
-      toast.warn('Exemplo facebook/python');
+      await dispatch(
+        LanguageActions.getLanguageRequest(
+          `/search/repositories?q=${result[0]}+language:${result[1]}`,
+          result,
+        ),
+      );
+      return history.push('/languageRepo');
     }
     setSearch('');
-    return history.push('/languageRepo');
+    return toast.warn('Exemplo facebook/python');
   }
 
   function handleChangeSearch(e) {
@@ -78,13 +82,7 @@ function Header({ getUserRequest, getLanguageRequest, history }) {
 }
 
 Header.propTypes = {
-  getUserRequest: PropTypes.func.isRequired,
-  getLanguageRequest: PropTypes.func.isRequired,
+  history: PropTypes.shape().isRequired,
 };
 
-const mapDispatchToProps = dispatch => bindActionCreators({ ...UserActions, ...LanguageActions }, dispatch);
-
-export default connect(
-  null,
-  mapDispatchToProps,
-)(withRouter(Header));
+export default withRouter(Header);

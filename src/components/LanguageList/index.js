@@ -1,13 +1,14 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
 import moment from 'moment';
+import { useSelector } from 'react-redux';
 
 import {
- Info, Container, Content, Header 
+  Info, Container, Content, Header,
 } from './styles';
 
-function LanguageList({ languageRepo }) {
+function LanguageList() {
+  const languageRepo = useSelector(state => state.language.repos.items);
+
   if (languageRepo) {
     return languageRepo.map(item => (
       <Container key={item.id}>
@@ -55,12 +56,4 @@ function LanguageList({ languageRepo }) {
   );
 }
 
-LanguageList.propTypes = {
-  languageRepo: PropTypes.arrayOf(PropTypes.shape()).isRequired,
-};
-
-const mapStateToProps = state => ({
-  languageRepo: state.language.repos.items,
-});
-
-export default connect(mapStateToProps)(LanguageList);
+export default LanguageList;
