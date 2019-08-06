@@ -1,9 +1,9 @@
 import { combineReducers } from 'redux';
 
-import repositories from './repositories';
 import { reducer as users } from './users';
+import { reducer as language } from './language';
 
 export default combineReducers({
   users,
-  repositories,
+  language,
 });
