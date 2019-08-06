@@ -1,17 +1,20 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { FaGitAlt, FaSearch } from 'react-icons/fa';
+import { toast } from 'react-toastify';
+import { withRouter } from 'react-router-dom';
 
 // import { Creators as RepositoriesActions } from '../../store/ducks/repositories';
 import UserActions from '../../store/ducks/users';
+import LanguageActions from '../../store/ducks/language';
 
 import {
   Container, Navbar, Form, Logo,
 } from './styles';
 
-function Header({ getUserRequest }) {
+function Header({ getUserRequest, getLanguageRequest, history }) {
   const [newInput, setNewInput] = useState('');
   const [search, setSearch] = useState('');
 
@@ -27,10 +30,14 @@ function Header({ getUserRequest }) {
 
   async function handleAddSearch(e) {
     e.preventDefault();
-    const result = search.split('/');
-    console.log(result[0], result[1]);
-    // await getUserRequest(`/search/repositories?q=${search}+language:${search}`);
+    if (search.split('/').length === 2) {
+      const result = search.split('/');
+      await getLanguageRequest(`/search/repositories?q=${result[0]}+language:${result[1]}`, result);
+    } else {
+      toast.warn('Exemplo facebook/python');
+    }
     setSearch('');
+    return history.push('/languageRepo');
   }
 
   function handleChangeSearch(e) {
@@ -72,11 +79,12 @@ function Header({ getUserRequest }) {
 
 Header.propTypes = {
   getUserRequest: PropTypes.func.isRequired,
+  getLanguageRequest: PropTypes.func.isRequired,
 };
 
-const mapDispatchToProps = dispatch => bindActionCreators(UserActions, dispatch);
+const mapDispatchToProps = dispatch => bindActionCreators({ ...UserActions, ...LanguageActions }, dispatch);
 
 export default connect(
   null,
   mapDispatchToProps,
-)(Header);
+)(withRouter(Header));
