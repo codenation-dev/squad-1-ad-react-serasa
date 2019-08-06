@@ -4,7 +4,7 @@ import moment from 'moment';
 
 import { Info, Container } from './styles';
 
-function RepoList({ repos }) {
+export default function RepoList({ repos }) {
   return (
     <Container>
       {repos.map(repo => (
@@ -52,5 +52,3 @@ RepoList.propTypes = {
     }),
   ).isRequired,
 };
-
-export default RepoList;

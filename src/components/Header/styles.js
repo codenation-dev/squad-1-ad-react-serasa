@@ -56,6 +56,10 @@ export const Form = styled.form`
     background: ${colors.light};
     color: ${colors.black};
 
+    svg {
+      margin: 0 5px;
+    }
+
     &:hover {
       background: ${colors.white};
     }

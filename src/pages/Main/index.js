@@ -1,15 +1,29 @@
 import React, { useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import Header from '../../components/Header';
 import Card from '../../components/Cards';
 import Loading from '../../components/Loading';
 
+import UserActions from '../../store/ducks/users';
+
 import { Container } from './styles';
 
-function Main({ users }) {
+export default function Main() {
+  const users = useSelector(state => state.users);
+  const dispatch = useDispatch();
+
   const [gitUser, setGitUser] = useState([]);
+
+  useEffect(() => {
+    const usersStorage = JSON.parse(localStorage.getItem('@UserGit'));
+    async function fetchGit() {
+      await dispatch(UserActions.getUserRequest(null, usersStorage));
+    }
+    if (usersStorage) {
+      fetchGit();
+    }
+  }, [dispatch]);
 
   useEffect(() => {
     const response = JSON.parse(localStorage.getItem('@UserGit'));
@@ -21,9 +35,7 @@ function Main({ users }) {
   }, [users]);
 
   if (users.isLoading) {
-    return (
-      <Loading />
-    );
+    return <Loading />;
   }
 
   return (
@@ -37,16 +49,3 @@ function Main({ users }) {
     </>
   );
 }
-
-Main.propTypes = {
-  users: PropTypes.shape({
-    data: PropTypes.arrayOf(PropTypes.shape()),
-    isLoading: PropTypes.bool,
-  }).isRequired,
-};
-
-const mapStateToProps = state => ({
-  users: state.users,
-});
-
-export default connect(mapStateToProps)(Main);
