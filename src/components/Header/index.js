@@ -2,26 +2,18 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { FaGitAlt, FaCheckCircle, FaPlusCircle } from 'react-icons/fa';
+import { FaGitAlt, FaSearch } from 'react-icons/fa';
 
 // import { Creators as RepositoriesActions } from '../../store/ducks/repositories';
 import UserActions from '../../store/ducks/users';
 
 import {
-  Container, Navbar, Form, Logo, Token,
+  Container, Navbar, Form, Logo,
 } from './styles';
 
 function Header({ getUserRequest }) {
-  const [token, setToken] = useState('');
-  const [newToken, setNewToken] = useState('');
   const [newInput, setNewInput] = useState('');
-
-  useEffect(() => {
-    const tokenResult = localStorage.getItem('@gitToken');
-    if (tokenResult) {
-      setToken(JSON.parse(tokenResult));
-    }
-  }, []);
+  const [search, setSearch] = useState('');
 
   async function handleAddUser(e) {
     e.preventDefault();
@@ -29,23 +21,22 @@ function Header({ getUserRequest }) {
     setNewInput('');
   }
 
-  function handleChangeToken(e) {
-    setNewToken(e.target.value);
-  }
-
   function handleChangeInput(e) {
     setNewInput(e.target.value);
   }
 
-  function handleAddToken() {
-    setToken(newToken);
-    localStorage.setItem('@gitToken', JSON.stringify(newToken));
+  async function handleAddSearch(e) {
+    e.preventDefault();
+    const result = search.split('/');
+    console.log(result[0], result[1]);
+    // await getUserRequest(`/search/repositories?q=${search}+language:${search}`);
+    setSearch('');
   }
 
-  function handleRemoveToken() {
-    localStorage.clear();
-    setToken('');
+  function handleChangeSearch(e) {
+    setSearch(e.target.value);
   }
+
   return (
     <Container>
       <Navbar>
@@ -62,21 +53,18 @@ function Header({ getUserRequest }) {
           />
           <button type="submit">Adicionar</button>
         </Form>
-        {token ? (
-          <Token>
-            <strong>Token</strong>
-            <FaCheckCircle color="#fff" onClick={handleRemoveToken} />
-          </Token>
-        ) : (
-          <Token>
-            <input
-              value={newToken}
-              onChange={e => handleChangeToken(e)}
-              placeholder="Adicionar Token"
-            />
-            <FaPlusCircle size={18} color="#fff" onClick={handleAddToken} />
-          </Token>
-        )}
+
+        <Form onSubmit={e => handleAddSearch(e)}>
+          <input
+            type="text"
+            placeholder="facebook/python"
+            value={search}
+            onChange={e => handleChangeSearch(e)}
+          />
+          <button type="submit">
+            <FaSearch />
+          </button>
+        </Form>
       </Navbar>
     </Container>
   );
