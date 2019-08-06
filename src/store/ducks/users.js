@@ -25,7 +25,9 @@ export const userSuccess = (state, { data }) => (
 );
 
 export const userRemove = (state, { id }) => {
-  localStorage.removeItem('@UserGit');
+  const items = JSON.parse(localStorage.getItem('@UserGit'));
+  const newItems = items.filter(user => user.id !== id);
+  localStorage.setItem('@UserGit', JSON.stringify(newItems));
   return state.merge({ data: [...state.data.filter(user => user.id !== id)] });
 };
 

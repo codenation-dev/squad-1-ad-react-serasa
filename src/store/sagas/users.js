@@ -23,6 +23,7 @@ export function* addUser(action) {
 
     yield put(UserActions.getUserSuccess(response.data));
   } catch (error) {
+    yield put(UserActions.getUserFailure('Usuario invalido'));
     toast.error('Usuario invalido');
   }
 }

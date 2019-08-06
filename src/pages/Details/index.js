@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import apiAxios from '../../services/apiAxios';
 
 import RepoList from '../../components/RepoList';
+import Loading from '../../components/Loading';
 
 import { Container, Owner } from './styles';
 
@@ -14,6 +15,8 @@ function Details({ match, users }) {
 
   const [repos, setRepos] = useState([]);
 
+  const [isLoading, setIsLoading] = useState(true);
+
   useEffect(() => {
     const { login } = match.params;
     const result = users.data.filter(i => i.login === login);
@@ -21,9 +24,16 @@ function Details({ match, users }) {
       const { data } = await apiAxios.get(`/users/${login}/repos`);
       setUser(result[0]);
       setRepos(data);
+      setIsLoading(false);
     }
     fetchGit();
   }, [match.params, users.data]);
+
+  if (isLoading) {
+    return (
+      <Loading />
+    );
+  }
 
   return (
     <div>
