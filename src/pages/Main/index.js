@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 
 import Header from '../../components/Header';
 import Card from '../../components/Cards';
+import Loading from '../../components/Loading';
 
 import { Container } from './styles';
 
@@ -18,6 +19,12 @@ function Main({ users }) {
       setGitUser(users.data);
     }
   }, [users]);
+
+  if (users.isLoading) {
+    return (
+      <Loading />
+    );
+  }
 
   return (
     <>
@@ -34,6 +41,7 @@ function Main({ users }) {
 Main.propTypes = {
   users: PropTypes.shape({
     data: PropTypes.arrayOf(PropTypes.shape()),
+    isLoading: PropTypes.bool,
   }).isRequired,
 };
 
