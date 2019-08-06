@@ -38,9 +38,9 @@ export const Form = styled.form`
     margin: 0 5px;
     padding: 0 5px;
     border-radius: 4px;
-    border: 1px solid rgba(0, 0, 0, 0.5);
-    background: rgba(255, 255, 255, 0.8);
-    color: #000;
+    border: 1px solid ${colors.darkTransparent};
+    background: ${colors.light};
+    color: ${colors.black};
 
     &:focus {
       background: ${colors.white};
@@ -52,41 +52,12 @@ export const Form = styled.form`
     height: 40px;
     padding: 5px;
     border-radius: 4px;
-    border: 1px solid rgba(0, 0, 0, 0.5);
-    background: rgba(255, 255, 255, 0.8);
-    color: #000;
+    border: 1px solid ${colors.darkTransparent};
+    background: ${colors.light};
+    color: ${colors.black};
 
     &:hover {
       background: ${colors.white};
     }
-  }
-`;
-
-export const Token = styled.div`
-  display: flex;
-  align-items: center;
-
-  input {
-    height: 24px;
-    margin: 0 5px;
-    padding: 0 5px;
-    border-radius: 4px;
-    border: 1px solid rgba(0, 0, 0, 0.5);
-    background: ${colors.lighter};
-    color: #000;
-
-    &:focus {
-      background: ${colors.white};
-    }
-  }
-
-  strong {
-    font-size: 18px;
-    color: ${colors.white};
-    margin-right: 5px;
-  }
-
-  svg {
-    cursor: pointer;
   }
 `;

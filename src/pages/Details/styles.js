@@ -1,10 +1,12 @@
 import styled from 'styled-components';
 
+import colors from '../../styles/colors';
+
 export const Container = styled.div`
   max-width: 700px;
-  background: #fff;
+  background: ${colors.white};
   border-radius: 4px;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 20px ${colors.darkTransparent};
   padding: 30px;
   margin: 80px auto;
 
@@ -26,7 +28,7 @@ export const Owner = styled.header`
   align-items: center;
 
   a {
-    color: #2647af;
+    color: ${colors.primary};
     font-size: 16px;
     text-decoration: none;
   }
@@ -45,7 +47,7 @@ export const Owner = styled.header`
   p {
     margin-top: 5px;
     font-size: 14px;
-    color: #666;
+    color: ${colors.dark};
     line-height: 1.4;
     text-align: center;
     max-width: 400px;

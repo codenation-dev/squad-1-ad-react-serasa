@@ -1,15 +1,17 @@
 import styled from 'styled-components';
 
+import colors from '../../styles/colors';
+
 export const Container = styled.ul`
   padding-top: 30px;
   margin-top: 30px;
-  border-top: 1px solid #eee;
+  border-top: 1px solid ${colors.lighter};
   list-style: none;
 
   li {
     display: flex;
     padding: 15px 10px;
-    border: 1px solid #eee;
+    border: 1px solid ${colors.lighter};
     border-radius: 4px;
 
     & + li {
@@ -27,10 +29,10 @@ export const Container = styled.ul`
 
         a {
           text-decoration: none;
-          color: #2647af;
+          color: ${colors.primary};
 
           &:hover {
-            color: #264790;
+            color: ${colors.primaryDark};
           }
         }
 
@@ -38,13 +40,13 @@ export const Container = styled.ul`
           font-size: 16px;
 
           &:hover {
-            color: #999;
+            color: ${colors.regular};
           }
         }
 
         span {
-          background: #eee;
-          color: #333;
+          background: ${colors.lighter};
+          color: ${colors.darker};
           border-radius: 2px;
           font-size: 12px;
           font-weight: 600;
@@ -57,7 +59,7 @@ export const Container = styled.ul`
       p {
         margin-top: 5px;
         font-size: 12px;
-        color: #999;
+        color: ${colors.darker};
       }
     }
   }

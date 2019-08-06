@@ -1,8 +1,10 @@
 import styled from 'styled-components';
 
+import colors from '../../styles/colors';
+
 export const Container = styled.div`
   width: 250px;
-  background: #fff;
+  background: ${colors.white};
   border-radius: 3px;
   display: flex;
   flex-direction: column;
@@ -30,7 +32,7 @@ export const Container = styled.div`
 
     small {
       font-size: 14px;
-      color: #666;
+      color: ${colors.dark};
     }
   }
 
@@ -44,12 +46,12 @@ export const Container = styled.div`
       small {
         font-weight: normal;
         font-size: 12px;
-        color: #999;
+        color: ${colors.regular};
         font-style: italic;
       }
 
       &:nth-child(2n - 1) {
-        background: #f5f5f5;
+        background: ${colors.light};
       }
     }
   }
@@ -67,7 +69,7 @@ export const Icon = styled.button`
   justify-content: center;
   align-items: center;
   height: 50px;
-  background: #fff;
+  background: ${colors.white};
   border: 0;
   margin: 0 10px;
   cursor: pointer;
