@@ -8,10 +8,12 @@ import LanguageActions from '../ducks/language';
 export function* addLanguage(action) {
   try {
     const response = yield call(apiAxios.get, action.link);
-    const result = { language: action.language[1], repository: action.language[0] };
+
+    const result = { language: action.language };
 
     yield put(LanguageActions.getLanguageSuccess(response.data, result));
   } catch (error) {
+    yield put(LanguageActions.getLanguageFailure());
     toast.error('Language ou Repositorio invalido');
   }
 }

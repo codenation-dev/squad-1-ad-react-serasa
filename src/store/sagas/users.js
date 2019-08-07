@@ -27,8 +27,7 @@ export function* addUser(action) {
     }
     return;
   } catch (error) {
-    yield put(UserActions.getUserFailure('Usuario invalido'));
-    toast.error('Usuario invalido');
     yield put(UserActions.getUserFailure());
+    toast.error('Usuario invalido');
   }
 }

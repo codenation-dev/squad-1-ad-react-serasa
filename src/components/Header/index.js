@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 import { FaGitAlt, FaSearch } from 'react-icons/fa';
-import { toast } from 'react-toastify';
 import { withRouter } from 'react-router-dom';
 
 import UserActions from '../../store/ducks/users';
@@ -30,18 +29,14 @@ function Header({ history }) {
 
   async function handleAddSearch(e) {
     e.preventDefault();
-    if (search.split('/').length === 2) {
-      const result = search.split('/');
-      await dispatch(
-        LanguageActions.getLanguageRequest(
-          `/search/repositories?q=${result[0]}+language:${result[1]}`,
-          result,
-        ),
-      );
-      return history.push('/languageRepo');
-    }
+    await dispatch(
+      LanguageActions.getLanguageRequest(
+        `/search/repositories?q=+language:${search}`,
+        search,
+      ),
+    );
     setSearch('');
-    return toast.warn('Exemplo facebook/python');
+    return history.push('/languageRepo');
   }
 
   function handleChangeSearch(e) {
@@ -68,7 +63,7 @@ function Header({ history }) {
         <Form onSubmit={e => handleAddSearch(e)}>
           <input
             type="text"
-            placeholder="facebook/python"
+            placeholder="JavaScript"
             value={search}
             onChange={e => handleChangeSearch(e)}
           />
