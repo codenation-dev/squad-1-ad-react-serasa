@@ -22,6 +22,7 @@ export default function Details({ match }) {
   const [repos, setRepos] = useState([]);
   const [repoName, setRepoName] = useState('');
   const [repoDesc, setRepoDesc] = useState('');
+  const [tokenBelong, setTokenBelong] = useState(false);
 
   const [isLoading, setIsLoading] = useState(true);
 
@@ -40,19 +41,23 @@ export default function Details({ match }) {
         }
         reposByYear[year].push(elem);
       });
+      const isUserToken = result[0].login === tokenUser.user.login;
+      setTokenBelong(isUserToken);
 
       setRepos(reposByYear);
       setIsLoading(false);
     }
     fetchGit();
-  }, [match.params, users.data]);
+  }, [match.params, tokenUser.isToken, tokenUser.user.login, users.data]);
 
   async function addRepository(e) {
     e.preventDefault();
     const repoAdd = [repoName, repoDesc];
-    if (tokenUser.isToken) {
+    if (tokenBelong) {
       await dispatch(UserActions.repoAddRequest(repoAdd, tokenUser.token));
     }
+    setRepoName('');
+    setRepoDesc('');
   }
 
   if (isLoading) {
@@ -69,7 +74,7 @@ export default function Details({ match }) {
             <h1>{user.name}</h1>
             <p>{user.bio}</p>
           </Owner>
-          {tokenUser.isToken && (
+          {tokenBelong && (
             <RepoAdd>
               <h1>Adicionar repositorio</h1>
               <form onSubmit={e => addRepository(e)}>
