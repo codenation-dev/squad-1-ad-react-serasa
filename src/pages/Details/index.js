@@ -34,7 +34,7 @@ export default function Details({ match }) {
 
       const reposByYear = [];
       data.map((elem) => {
-        const year = (new Date(elem.created_at)).getFullYear();
+        const year = new Date(elem.created_at).getFullYear();
         if (reposByYear[year] === undefined) {
           reposByYear[year] = [];
         }
