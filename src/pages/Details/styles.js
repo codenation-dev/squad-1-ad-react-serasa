@@ -53,3 +53,39 @@ export const Owner = styled.header`
     max-width: 400px;
   }
 `;
+
+export const RepoAdd = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 20px 0;
+
+  h1 {
+    color: ${colors.primary};
+    margin-bottom: 10px;
+    font-size: 18px;
+  }
+
+  form {
+    input {
+      margin-right: 10px;
+      padding: 5px 10px;
+      height: 30px;
+      border-radius: 4px;
+      border: 1px solid ${colors.primary};
+    }
+
+    button {
+      padding: 5px 10px;
+      height: 30px;
+      border-radius: 4px;
+      border: 1px solid ${colors.primary};
+      background: transparent;
+      cursor: pointer;
+
+      &:hover {
+        background: ${colors.primary};
+      }
+    }
+  }
+`;

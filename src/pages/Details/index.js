@@ -10,7 +10,7 @@ import Loading from '../../components/Loading';
 
 import UserActions from '../../store/ducks/users';
 
-import { Container, Owner } from './styles';
+import { Container, Owner, RepoAdd } from './styles';
 
 export default function Details({ match }) {
   const dispatch = useDispatch();
@@ -69,22 +69,24 @@ export default function Details({ match }) {
             <h1>{user.name}</h1>
             <p>{user.bio}</p>
           </Owner>
-          <div>
-            <h1>Adicionar repositorio</h1>
-            <form onSubmit={e => addRepository(e)}>
-              <input
-                placeholder="name"
-                value={repoName}
-                onChange={e => setRepoName(e.target.value)}
-              />
-              <input
-                placeholder="description"
-                value={repoDesc}
-                onChange={e => setRepoDesc(e.target.value)}
-              />
-              <button type="submit">Adicionar</button>
-            </form>
-          </div>
+          {tokenUser.isToken && (
+            <RepoAdd>
+              <h1>Adicionar repositorio</h1>
+              <form onSubmit={e => addRepository(e)}>
+                <input
+                  placeholder="name"
+                  value={repoName}
+                  onChange={e => setRepoName(e.target.value)}
+                />
+                <input
+                  placeholder="description"
+                  value={repoDesc}
+                  onChange={e => setRepoDesc(e.target.value)}
+                />
+                <button type="submit">Adicionar</button>
+              </form>
+            </RepoAdd>
+          )}
           <RepoList repos={repos} />
         </Container>
       ) : (
