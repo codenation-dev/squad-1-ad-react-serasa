@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { FaGithub } from 'react-icons/fa';
 
 import TokenActions from '../../store/ducks/token';
+
+import { Container, Header, Form } from './styles';
 
 export default function Login(props) {
   const dispatch = useDispatch();
@@ -26,9 +29,12 @@ export default function Login(props) {
   }
 
   return (
-    <div>
-      <h1>Logado</h1>
-      <form onSubmit={e => handleLogin(e)}>
+    <Container>
+      <Header>
+        <FaGithub size={100} />
+        <h1>Bem Vindo a squad 1</h1>
+      </Header>
+      <Form onSubmit={e => handleLogin(e)}>
         <input
           type="username"
           value={username}
@@ -42,8 +48,8 @@ export default function Login(props) {
           placeholder="password"
         />
         <button type="submit">logar</button>
-      </form>
+      </Form>
       <Link to="/">Voltar</Link>
-    </div>
+    </Container>
   );
 }
