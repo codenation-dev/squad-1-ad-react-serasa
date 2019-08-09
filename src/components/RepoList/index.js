@@ -20,22 +20,24 @@ export default function RepoList({ repos }) {
               <p>Forks </p>
             </Info>
 
-            <Info>
-              <strong>{repo.stargazers_count}</strong>
-              <p>Stars </p>
-            </Info>
+                <Info>
+                  <strong>{repo.stargazers_count}</strong>
+                  <p>Stars </p>
+                </Info>
 
-            <Info>
-              <strong>{repo.open_issues_count}</strong>
-              <p>Issues </p>
-            </Info>
+                <Info>
+                  <strong>{repo.open_issues_count}</strong>
+                  <p>Issues </p>
+                </Info>
 
-            <Info>
-              <strong>{moment(repo.created_at).format('L')}</strong>
-              <p>Created </p>
-            </Info>
-          </div>
-        </li>
+                <Info>
+                  <strong>{moment(repo.created_at).format('L')}</strong>
+                  <p>Created </p>
+                </Info>
+              </div>
+            </li>
+          ))}
+        </Container>
       ))}
     </ContainerStyle>
   );
@@ -43,14 +45,6 @@ export default function RepoList({ repos }) {
 
 RepoList.propTypes = {
   repos: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.number,
-      name: PropTypes.string,
-      html_url: PropTypes.string,
-      stargazers_count: PropTypes.number,
-      open_issues_count: PropTypes.number,
-      forks_count: PropTypes.number,
-      created_at: PropTypes.string,
-    }),
+    PropTypes.shape(PropTypes.number),
   ).isRequired,
 };
