@@ -42,15 +42,11 @@ export function* addRepo(action) {
     const repoName = action.repoAdd[0];
     const repoDesc = action.repoAdd[1];
 
-    const data = { name: repoName, description: repoDesc };
-
     yield call(
       apiAxios.post,
       '/user/repos',
-      {
-        headers: headerParams,
-      },
-      { data: qs.stringify(data) },
+      { name: repoName, description: repoDesc },
+      { headers: headerParams },
     );
   } catch (error) {
     toast.error('`Problema ao adicionar repositorio`');
