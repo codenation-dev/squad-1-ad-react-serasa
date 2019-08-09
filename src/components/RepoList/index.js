@@ -2,26 +2,23 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
 
-import { Info, Container } from './styles';
+import ContainerStyle from '../ContainerStyle';
+
+import { Info } from './styles';
 
 export default function RepoList({ repos }) {
   return (
-    <div>
-      {repos.map((reposByYear, year) => (
-        <Container key={year}>
-          <h1>
-            {year}
-          </h1>
-          {reposByYear.map(repo => (
-            <li key={repo.id}>
-              <div>
-                <h2>
-                  <a href={repo.html_url}>{repo.name}</a>
-                </h2>
-                <Info>
-                  <strong>{repo.forks_count}</strong>
-                  <p>Forks </p>
-                </Info>
+    <ContainerStyle>
+      {repos.map(repo => (
+        <li key={repo.id}>
+          <div>
+            <h2>
+              <a href={repo.html_url}>{repo.name}</a>
+            </h2>
+            <Info>
+              <strong>{repo.forks_count}</strong>
+              <p>Forks </p>
+            </Info>
 
                 <Info>
                   <strong>{repo.stargazers_count}</strong>
@@ -42,7 +39,7 @@ export default function RepoList({ repos }) {
           ))}
         </Container>
       ))}
-    </div>
+    </ContainerStyle>
   );
 }
 

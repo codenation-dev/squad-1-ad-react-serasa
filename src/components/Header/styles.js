@@ -65,3 +65,40 @@ export const Form = styled.form`
     }
   }
 `;
+
+export const LoginContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  color: ${colors.white};
+
+  strong {
+    color: ${colors.light};
+    font-size: 16px;
+    margin-right: 5px;
+  }
+
+  button {
+    background: transparent;
+    border: 1px solid ${colors.white};
+    border-radius: 4px;
+    padding: 3px 5px;
+    cursor: pointer;
+    color: ${colors.white};
+
+    &:hover {
+      color: ${colors.lighter};
+      border: 1px solid ${colors.lighter};
+    }
+  }
+
+  a {
+    font-size: 18px;
+    font-weight: bold;
+    text-decoration: none;
+    color: ${colors.black};
+
+    &:hover {
+      color: ${colors.darker};
+    }
+  }
+`;

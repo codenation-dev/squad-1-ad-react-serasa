@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import apiAxios from '../../services/apiAxios';
@@ -8,13 +8,20 @@ import apiAxios from '../../services/apiAxios';
 import RepoList from '../../components/RepoList';
 import Loading from '../../components/Loading';
 
+import UserActions from '../../store/ducks/users';
+
 import { Container, Owner } from './styles';
 
 export default function Details({ match }) {
+  const dispatch = useDispatch();
+
   const users = useSelector(state => state.users);
+  const tokenUser = useSelector(state => state.token);
 
   const [user, setUser] = useState({});
   const [repos, setRepos] = useState([]);
+  const [repoName, setRepoName] = useState('');
+  const [repoDesc, setRepoDesc] = useState('');
 
   const [isLoading, setIsLoading] = useState(true);
 
@@ -40,10 +47,16 @@ export default function Details({ match }) {
     fetchGit();
   }, [match.params, users.data]);
 
+  async function addRepository(e) {
+    e.preventDefault();
+    const repoAdd = [repoName, repoDesc];
+    if (tokenUser.isToken) {
+      await dispatch(UserActions.repoAddRequest(repoAdd, tokenUser.token));
+    }
+  }
+
   if (isLoading) {
-    return (
-      <Loading />
-    );
+    return <Loading />;
   }
 
   return (
@@ -56,6 +69,22 @@ export default function Details({ match }) {
             <h1>{user.name}</h1>
             <p>{user.bio}</p>
           </Owner>
+          <div>
+            <h1>Adicionar repositorio</h1>
+            <form onSubmit={e => addRepository(e)}>
+              <input
+                placeholder="name"
+                value={repoName}
+                onChange={e => setRepoName(e.target.value)}
+              />
+              <input
+                placeholder="description"
+                value={repoDesc}
+                onChange={e => setRepoDesc(e.target.value)}
+              />
+              <button type="submit">Adicionar</button>
+            </form>
+          </div>
           <RepoList repos={repos} />
         </Container>
       ) : (

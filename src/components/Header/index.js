@@ -1,18 +1,21 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { FaGitAlt, FaSearch } from 'react-icons/fa';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
 
 import UserActions from '../../store/ducks/users';
 import LanguageActions from '../../store/ducks/language';
+import TokenActions from '../../store/ducks/token';
 
 import {
-  Container, Navbar, Form, Logo,
+  Container, Navbar, Form, Logo, LoginContainer,
 } from './styles';
 
 function Header({ history }) {
   const dispatch = useDispatch();
+
+  const userToken = useSelector(state => state.token);
 
   const [newInput, setNewInput] = useState('');
   const [search, setSearch] = useState('');
@@ -23,24 +26,17 @@ function Header({ history }) {
     setNewInput('');
   }
 
-  function handleChangeInput(e) {
-    setNewInput(e.target.value);
-  }
-
   async function handleAddSearch(e) {
     e.preventDefault();
     await dispatch(
-      LanguageActions.getLanguageRequest(
-        `/search/repositories?q=+language:${search}`,
-        search,
-      ),
+      LanguageActions.getLanguageRequest(`/search/repositories?q=+language:${search}`, search),
     );
     setSearch('');
     return history.push('/languageRepo');
   }
 
-  function handleChangeSearch(e) {
-    setSearch(e.target.value);
+  function handleLogout() {
+    dispatch(TokenActions.getTokenClear('', false));
   }
 
   return (
@@ -55,7 +51,7 @@ function Header({ history }) {
             type="text"
             placeholder="Adicionar"
             value={newInput}
-            onChange={e => handleChangeInput(e)}
+            onChange={e => setNewInput(e.target.value)}
           />
           <button type="submit">Adicionar</button>
         </Form>
@@ -65,12 +61,27 @@ function Header({ history }) {
             type="text"
             placeholder="JavaScript"
             value={search}
-            onChange={e => handleChangeSearch(e)}
+            onChange={e => setSearch(e.target.value)}
           />
           <button type="submit">
             <FaSearch />
           </button>
         </Form>
+        {userToken.isToken ? (
+          <LoginContainer>
+            <h1>Bem Vindo</h1>
+            <div>
+              <strong>{userToken.user.login}</strong>
+              <button type="button" onClick={handleLogout}>
+                Logout
+              </button>
+            </div>
+          </LoginContainer>
+        ) : (
+          <LoginContainer>
+            <Link to="/login">Login</Link>
+          </LoginContainer>
+        )}
       </Navbar>
     </Container>
   );

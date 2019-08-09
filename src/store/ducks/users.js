@@ -6,6 +6,7 @@ export const { Types, Creators } = createActions({
   getUserSuccess: ['data'],
   getUserRemove: ['id'],
   getUserFailure: ['error'],
+  repoAddRequest: ['repoAdd', 'token'],
 });
 
 export const UserTypes = Types;

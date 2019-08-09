@@ -18,9 +18,7 @@ export const INITIAL_STATE = Immutable({
 
 export const languageRequest = state => state.merge({ isLoading: true });
 
-export const languageSuccess = (state, { data, repoLanguage }) => (
-  state.merge({ repos: data, repoLanguage, isLoading: false })
-);
+export const languageSuccess = (state, { data, repoLanguage }) => state.merge({ repos: data, repoLanguage, isLoading: false });
 
 export const languageFailure = state => state.merge({ isLoading: false });
 
