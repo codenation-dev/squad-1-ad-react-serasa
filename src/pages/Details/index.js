@@ -24,7 +24,17 @@ export default function Details({ match }) {
     async function fetchGit() {
       const { data } = await apiAxios.get(`/users/${login}/repos`);
       setUser(result[0]);
-      setRepos(data);
+
+      const reposByYear = [];
+      data.map((elem) => {
+        const year = (new Date(elem.created_at)).getFullYear();
+        if (reposByYear[year] === undefined) {
+          reposByYear[year] = [];
+        }
+        reposByYear[year].push(elem);
+      });
+
+      setRepos(reposByYear);
       setIsLoading(false);
     }
     fetchGit();

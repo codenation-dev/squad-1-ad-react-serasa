@@ -8,6 +8,10 @@ export const Container = styled.ul`
   border-top: 1px solid ${colors.lighter};
   list-style: none;
 
+  h1 {
+    padding: 15px 10px;
+  }
+
   li {
     display: flex;
     padding: 15px 10px;
