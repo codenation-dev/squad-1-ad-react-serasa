@@ -2,11 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
 
-import { Info, Container } from './styles';
+import ContainerStyle from '../ContainerStyle';
+
+import { Info } from './styles';
 
 export default function RepoList({ repos }) {
   return (
-    <Container>
+    <ContainerStyle>
       {repos.map(repo => (
         <li key={repo.id}>
           <div>
@@ -35,7 +37,7 @@ export default function RepoList({ repos }) {
           </div>
         </li>
       ))}
-    </Container>
+    </ContainerStyle>
   );
 }
 
