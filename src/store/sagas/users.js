@@ -8,12 +8,17 @@ import UserActions from '../ducks/users';
 
 export function* addUser(action) {
   const usersGit = JSON.parse(localStorage.getItem('@UserGit'));
+
   try {
     if (action.user) {
       const response = yield call(apiAxios.get, action.user);
       const isDuplicated = yield select(state => state.users.data.find(user => user.id === response.data.id));
       if (isDuplicated) {
         throw toast.error('Usuario ja adicionado');
+      }
+
+      if (!response.data && usersGit) {
+        yield put(UserActions.getUserSuccess([...usersGit]));
       }
 
       if (usersGit) {
@@ -23,10 +28,11 @@ export function* addUser(action) {
       }
 
       yield put(UserActions.getUserSuccess(response.data));
-    } else if (action.usersStorage) {
+    }
+    if (action.usersStorage) {
       yield put(UserActions.getUserSuccess(action.usersStorage));
     }
-    return;
+    yield put(UserActions.getUserFailure());
   } catch (error) {
     yield put(UserActions.getUserFailure());
     toast.error('Usuario invalido');

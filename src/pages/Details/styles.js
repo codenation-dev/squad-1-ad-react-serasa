@@ -27,6 +27,7 @@ export const Container = styled.div`
     border-radius: 4px;
     border: 1px solid ${colors.primary};
     cursor: pointer;
+    margin-right: 10px;
   }
 `;
 

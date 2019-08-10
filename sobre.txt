@@ -1,0 +1,13 @@
+
+"Objetivos":
+  "- O usuário pode digitar um nome de usuário do GitHub.",
+  "- O usuário pode clicar em um botão para criar e mostrar o repositório do usuário com sua timeline.",
+  "- O usuário pode ver um mensagem de erro se o username do GitHub não for válido.",
+  "- O usuário pode ver um resumo do número de repos registrados pelo ano em que foram criados",
+  "- O usuário pode buscar repositórios/projetos por tipo de linguagem de programação"
+],
+"Recursos": [
+  "O GitHub oferece duas API’s e você pode utilizar para ter acesso aos dados de repositórios,
+  você também pode utilizar um package do NPM para acessar a API do GitHub."
+]
+
