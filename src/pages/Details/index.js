@@ -128,7 +128,7 @@ export default function Details({ match }) {
             ))}
           </select>
 
-          {yeaRepo ? <RepoList repos={yeaRepo} /> : <RepoList repos={repos} />}
+          {yeaRepo.length > 0 ? <RepoList repos={yeaRepo} /> : <RepoList repos={repos} />}
         </Container>
       ) : (
         <Container>
