@@ -20,6 +20,14 @@ export const Container = styled.div`
       margin-right: 10px;
     }
   }
+
+  select {
+    padding: 5px 10px;
+    height: 30px;
+    border-radius: 4px;
+    border: 1px solid ${colors.primary};
+    cursor: pointer;
+  }
 `;
 
 export const Owner = styled.header`
