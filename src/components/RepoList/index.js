@@ -10,8 +10,8 @@ export default function RepoList({ repos }) {
   return (
     <>
       <ContainerStyle>
-        {repos.map((repo, key) => (
-          <li key={key}>
+        {repos.map(repo => (
+          <li key={repo.id}>
             <div>
               <h2>
                 <a href={repo.html_url}>{repo.name}</a>
@@ -41,5 +41,16 @@ export default function RepoList({ repos }) {
 }
 
 RepoList.propTypes = {
-  repos: PropTypes.arrayOf(PropTypes.shape(PropTypes.number)).isRequired,
+  repos: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number,
+      name: PropTypes.string,
+      html_url: PropTypes.string,
+      stargazers_count: PropTypes.number,
+      open_issues_count: PropTypes.number,
+      forks_count: PropTypes.number,
+      created_at: PropTypes.string,
+    }),
+    PropTypes.shape(PropTypes.number),
+  ).isRequired,
 };
