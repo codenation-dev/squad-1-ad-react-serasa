@@ -27,6 +27,7 @@ export default function Details({ match }) {
   const [repos, setRepos] = useState([]);
   const [yeaRepo, setYearRepo] = useState([]);
   const [years, setYears] = useState('');
+  const [repoLength, setRepoLength] = useState(0);
 
   // Verifica se usuario esta logado
   const [tokenBelong, setTokenBelong] = useState(false);
@@ -72,6 +73,7 @@ export default function Details({ match }) {
 
   function handleYear(e) {
     const result = repos.filter(i => i.created_at.split('-')[0] === e.target.value);
+    setRepoLength(result.length);
     setYearRepo(result);
   }
 
@@ -127,6 +129,8 @@ export default function Details({ match }) {
               </option>
             ))}
           </select>
+
+          {repoLength > 0 && <strong>Quantidade: {repoLength}</strong>}
 
           {yeaRepo.length > 0 ? <RepoList repos={yeaRepo} /> : <RepoList repos={repos} />}
         </Container>

@@ -20,10 +20,10 @@ export default function Main() {
     async function fetchGit() {
       await dispatch(UserActions.getUserRequest(null, usersStorage));
     }
-    if (usersStorage) {
+    if (users.data.length < 1) {
       fetchGit();
     }
-  }, [dispatch]);
+  }, [dispatch, users.data.length]);
 
   useEffect(() => {
     const response = JSON.parse(localStorage.getItem('@UserGit'));
